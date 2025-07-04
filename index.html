@@ -1,1 +1,240 @@
-index.html
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Appointment & Reviews</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #e3f2fd;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: #1976d2;
+            color: #fff;
+            padding: 12px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 18px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #ffb300;
+        }
+        .container {
+            background: #fff;
+            max-width: 520px;
+            margin: 30px auto 20px auto;
+            padding: 24px 32px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(223, 223, 16, 0.08);
+        }
+        h1, h2 {
+            color: #1976d2;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 4px;
+            border: 1px solid #bdbdbd;
+            box-sizing: border-box;
+        }
+        button {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            margin-top: 16px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #1565c0;
+        }
+        .reviews {
+            margin-top: 30px;
+        }
+        .review {
+            background: #f1f8e9;
+            border-left: 4px solid #43a047;
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        .review strong {
+            color: #388e3c;
+        }
+        .rating {
+            color: #ffb300;
+            font-size: 18px;
+        }
+        .footer {
+            background: #1976d2;
+            color: #fff;
+            text-align: center;
+            padding: 14px 0 10px 0;
+            margin-top: 40px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 14px 4vw;
+            }
+            nav a {
+                margin: 0 8px;
+                font-size: 16px;
+            }
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('appointment')">Book Appointment</a>
+        <a href="#" onclick="showSection('reviews')">Reviews</a>
+        <a href="#" onclick="showSection('contact')">Contact</a>
+    </nav>
+
+    <div class="container" id="homeSection">
+        <h1>Welcome to  DR . VANITHA'S HOMEOPATHY CLININC </h1>
+        <p style="text-align:center;">
+            Book your appointment online and share your feedback.<br>
+            We care for your health!
+        </p>
+        <img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?w=400" alt="Doctor" style="display:block;margin:20px auto 0 auto;max-width:220px;width:100%;border-radius:8px;">
+    </div>
+
+    <div class="container hidden" id="appointmentSection">
+        <h2>Book an Appointment</h2>
+        <form id="appointmentForm">
+            <label for="patientName">Your Name:</label>
+            <input type="text" id="patientName" required>
+
+            <label for="appointmentDate">Date:</label>
+            <input type="date" id="appointmentDate" required>
+
+            <label for="appointmentTime">Time:</label>
+            <input type="time" id="appointmentTime" required>
+
+            <label for="reason">Reason for Visit:</label>
+            <textarea id="reason" rows="2" required></textarea>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+        <div id="appointmentMsg"></div>
+    </div>
+
+    <div class="container hidden" id="reviewsSection">
+        <h2>Give Your Review</h2>
+        <form id="reviewForm">
+            <label for="reviewerName">Your Name:</label>
+            <input type="text" id="reviewerName" required>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" required>
+                <option value="">Select</option>
+                <option value="5">★★★★★ (5)</option>
+                <option value="4">★★★★☆ (4)</option>
+                <option value="3">★★★☆☆ (3)</option>
+                <option value="2">★★☆☆☆ (2)</option>
+                <option value="1">★☆☆☆☆ (1)</option>
+            </select>
+
+            <label for="comment">Comment:</label>
+            <textarea id="comment" rows="2" required></textarea>
+
+            <button type="submit">Submit Review</button>
+        </form>
+
+        <div class="reviews" id="reviews">
+            <h2>Patient Reviews</h2>
+            <!-- Reviews will appear here -->
+        </div>
+    </div>
+
+    <div class="container hidden" id="contactSection">
+        <h2>Contact Us</h2>
+        <p>
+            <strong>DR . VANITHA'S HOMEOPATHY CLININC </strong><br>
+            NEAR SJR function HALL <br>
+            Phone: +91-9876543210<br>
+            Email: info@abcclinic.com
+        </p>
+        <p>
+            <strong>Working Hours:</strong><br>
+            Mon-SUN: 9:00 AM - 7:00 PM<br>
+        </p>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 ABC Clinic. All rights reserved.
+    </div>
+
+    <script>
+        // Navigation
+        function showSection(section) {
+            document.getElementById('homeSection').classList.add('hidden');
+            document.getElementById('appointmentSection').classList.add('hidden');
+            document.getElementById('reviewsSection').classList.add('hidden');
+            document.getElementById('contactSection').classList.add('hidden');
+            if(section === 'home') document.getElementById('homeSection').classList.remove('hidden');
+            if(section === 'appointment') document.getElementById('appointmentSection').classList.remove('hidden');
+            if(section === 'reviews') document.getElementById('reviewsSection').classList.remove('hidden');
+            if(section === 'contact') document.getElementById('contactSection').classList.remove('hidden');
+        }
+        // Show home by default
+        showSection('home');
+
+        // Appointment form
+        document.getElementById('appointmentForm').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('patientName').value.trim();
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+            const reason = document.getElementById('reason').value.trim();
+
+            if (name && date && time && reason) {
+                document.getElementById('appointmentMsg').innerHTML =
+                    `<p style="color:green;">Thank you, <strong>${name}</strong>! Your appointment is booked for <strong>${date}</strong> at <strong>${time}</strong>.</p>`;
+                document.getElementById('appointmentForm').reset();
+            }
+        };
+
+        // Review form
+        document.getElementById('reviewForm').onsubmit = function(e) {
+            e.preventDefault();
+            const reviewer = document.getElementById('reviewerName').value.trim();
+            const rating = document.getElementById('rating').value;
+            const comment = document.getElementById('comment').value.trim();
+
+            if (reviewer && rating && comment) {
+                const reviewsDiv = document.getElementById('reviews');
+                const reviewHTML = `
+                    <div class="review">
+                        <strong>${reviewer}</strong>
+                        <span class="rating">${'★'.repeat(rating)}${'☆'.repeat(5-rating)}</span>
+                        <div>${comment}</div>
+                    </div>
+                `;
+                reviewsDiv.innerHTML += reviewHTML;
+                document.getElementById('reviewForm').reset();
+            }
+        };
+    </script>
+</body>
+</html>
